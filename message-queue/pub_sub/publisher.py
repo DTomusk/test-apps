@@ -11,8 +11,7 @@ channel = connection.channel()
 channel.exchange_declare(exchange='pub',
                          exchange_type='fanout')
 
-channel.queue_declare(queue='', durable=True)
-
+# We don't need to declare a queue here anymore
 
 message = ' '.join(sys.argv[1:]) or "info: Hello World!"
 # As opposed to before, we're not using a routing_key as messages go to all queues
