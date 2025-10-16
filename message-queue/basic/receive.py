@@ -11,6 +11,8 @@ def main():
     def callback(ch, method, properties, body):
         print(f" [x] Received {body}")
 
+    # auto_ack acknowledges receiving a message when it gets it, so if the worker fails to process a message
+    # after receiving it, the message will never get processed 
     channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True)
 
     print(' [*] Waiting for messages. To exit press CTRL+C')
@@ -19,6 +21,7 @@ def main():
 if __name__ == '__main__':
     try:
         main()
+    # quit on ctrl+c
     except KeyboardInterrupt:
         print('Interrupted')
         try:
