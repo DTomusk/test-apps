@@ -5,6 +5,8 @@ from models import severity
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
+channel.exchange_declare(exchange_type='direct', exchange='foo')
+
 result = channel.queue_declare(queue='', exclusive=True)
 queue_name = result.method.queue
 

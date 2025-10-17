@@ -5,6 +5,10 @@ from models import severity
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
+# don't forget to declare the exchange in the consumers as well
+# otherwise there's no guarantee when you bind the exchange later that it will exist
+channel.exchange_declare(exchange_type='direct', exchange='foo')
+
 result = channel.queue_declare(queue='', exclusive=True)
 queue_name = result.method.queue
 
