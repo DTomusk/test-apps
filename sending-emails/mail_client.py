@@ -14,5 +14,4 @@ conf = ConnectionConfig(
         TEMPLATE_FOLDER="email-templates"      
     )
 
-# mail client
 mail_client = FastMail(conf)
